@@ -1,0 +1,111 @@
+{
+    "$help": "https://aka.ms/terminal-documentation",
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": 
+    [
+        {
+            "command": 
+            {
+                "action": "copy",
+                "singleLine": false
+            },
+            "keys": "ctrl+c"
+        },
+        {
+            "command": "paste",
+            "keys": "ctrl+v"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
+        },
+        {
+            "command": 
+            {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
+            "keys": "alt+shift+d"
+        }
+    ],
+    "copyFormatting": "none",
+    "copyOnSelect": true,
+    "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+    "language": "en-US",
+    "launchMode": "maximized",
+    "profiles": 
+    {
+        "defaults": 
+        {
+            "colorScheme": "Argonaut",
+            "cursorShape": "bar",
+            "font": 
+            {
+                "face": "Cousine Nerd Font",
+                "size": 14
+            }
+        },
+        "list": 
+        [
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory": "//wsl$/Ubuntu/home/ivan"
+            }
+        ]
+    },
+    "schemes": 
+    [
+        {
+            "name": "Argonaut",
+            "black": "#232323",
+            "red": "#ff000f",
+            "green": "#8ce10b",
+            "yellow": "#ffb900",
+            "blue": "#008df8",
+            "purple": "#6d43a6",
+            "cyan": "#00d8eb",
+            "white": "#ffffff",
+            "brightBlack": "#444444",
+            "brightRed": "#ff2740",
+            "brightGreen": "#abe15b",
+            "brightYellow": "#ffd242",
+            "brightBlue": "#0092ff",
+            "brightPurple": "#9a5feb",
+            "brightCyan": "#67fff0",
+            "brightWhite": "#ffffff",
+            "background": "#0e1019",
+            "foreground": "#fffaf4",
+            "selectionBackground": "#002a3b",
+            "cursorColor": "#ff0018"
+          },
+          {
+            "name": "Elementary",
+            "black": "#242424",
+            "red": "#d71c15",
+            "green": "#5aa513",
+            "yellow": "#fdb40c",
+            "blue": "#063b8c",
+            "purple": "#e40038",
+            "cyan": "#2595e1",
+            "white": "#efefef",
+            "brightBlack": "#4b4b4b",
+            "brightRed": "#fc1c18",
+            "brightGreen": "#6bc219",
+            "brightYellow": "#fec80e",
+            "brightBlue": "#0955ff",
+            "brightPurple": "#fb0050",
+            "brightCyan": "#3ea8fc",
+            "brightWhite": "#8c00ec",
+            "background": "#181818",
+            "foreground": "#efefef",
+            "selectionBackground": "#b5d5ff",
+            "cursorColor": "#bbbbbb"
+          }
+    ],
+    "startOnUserLogin": true,
+    "theme": "dark"
+}
