@@ -63,4 +63,4 @@ sudo apt-get update
 sudo apt-get install helm
 
 # install other packages
-sudo apt install -y jq tree
+sudo apt install -y jq tree net-tools
