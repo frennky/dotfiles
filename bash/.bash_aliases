@@ -28,7 +28,7 @@ alias 777='chmod -R 777'
 alias ps="ps aux | grep "
 
 # open ports
-alias openports='netstat -pena --inet'
+alias ports='netstat -pena --inet'
 
 # environment variables
 alias env='env | sort'
