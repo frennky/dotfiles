@@ -2,11 +2,11 @@
 
 readonly PACKAGES=(bat
                    htop
-                   jq 
-                   tmux
-                   tree 
+                   jq
                    ncdu
                    net-tools
+                   tmux
+                   tree
                    vim)
 
 install_packages() {

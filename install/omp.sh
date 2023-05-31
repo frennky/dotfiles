@@ -8,13 +8,11 @@ install_omp() {
     # TODO eval "$(oh-my-posh init bash --config ~/jandedobbeleer.omp.json)" # file path or use url
     echo 'eval "$(oh-my-posh init bash)"' >> ~/.bashrc
     source ~/.bashrc
-    # verify
-    oh-my-posh version
-    # install fonts
-    oh-my-posh font install Cousine
 }
 
 echo "Installing Oh-my-posh"
 install_omp
+oh-my-posh version
+oh-my-posh font install Cousine
 echo "Don't forget to configure terminal to use installed Nerd Font."
 echo "Done!"

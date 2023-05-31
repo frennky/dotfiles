@@ -9,4 +9,5 @@ install_ctop() {
 
 echo "Installing ctop"
 install_ctop
+ctop -v
 echo "Done!"

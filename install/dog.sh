@@ -17,4 +17,5 @@ install_dog() {
 
 echo "Installing dog"
 install_dog
+dog --version
 echo "Done!"
