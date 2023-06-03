@@ -20,7 +20,6 @@ shopt -s checkwinsize
 
 # ssh agent
 eval $(ssh-agent)
-ssh-add -q ~/.ssh/github
 
 # Alias definitions
 if [ -f ~/.bash_aliases ]; then
