@@ -18,4 +18,12 @@ install() {
     done
 }
 
+configure_bash() {
+    ln -sf $(pwd)/.bash_aliases ~/.bash_aliases
+    ln -sf $(pwd)/.bash_functions ~/.bash_functions
+    ln -sf $(pwd)/.bashrc ~/.bashrc
+}
+
+configure_bash
+
 [[ $# == 0 ]] && install_all || install $*
