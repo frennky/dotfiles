@@ -38,3 +38,6 @@ alias path='echo -e ${PATH//:/\\n}'
 alias grep='grep --color=auto'
 # use pipe to chain more words but need to escape it
 alias greph="grep --color=always -e^ -e"
+
+# kubectl
+alias k='kubectl'
