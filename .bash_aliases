@@ -1,5 +1,5 @@
 # dir commands
-alias ll='ls -alF'
+alias ll='ls -halF'
 alias mkdir='mkdir -p'
 alias ..='cd ..'
 alias ...='cd ..; cd ..'
