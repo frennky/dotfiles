@@ -1,13 +1,16 @@
 #!/bin/bash
 
-readonly PACKAGES=(bat
+readonly PACKAGES=(curl
+                   bat
                    htop
                    jq
                    ncdu
                    net-tools
                    tmux
                    tree
-                   vim)
+                   vim
+                   nfs-common
+                   cifs-utils)
 
 install_packages() {
     [[ ${#PACKAGES[@]} != 0 ]] \

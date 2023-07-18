@@ -7,8 +7,11 @@ This directory contains install scripts for various development tools.
 | <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#cliv2-linux-install" target="_blank"><img alt="AWS CLI" height="60px" src="../img/aws.png"></a> | aws.sh | installs AWS CLI |
 | <a href="https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt" target="_blank"><img alt="Azure CLI" height="60px" src="../img/azure.svg"></a> | azure.sh | installs Azure CLI |
 || ctop.sh | installs [ctop](https://github.com/bcicen/ctop/) - container resource usage monitoring, similar to top command |
+| <a href="https://discord.com/download" target="_blank"><img alt="Discord" height="60px" src="../img/discord.svg"></a> | discord.sh | installs Discord |
+| <a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank"><img alt="Docker" height="60px" src="../img/docker.svg"></a> | docker.sh | installs Docker |
 || dog.sh | installs [dog](https://github.com/ogham/dog/) - DNS client tool |
 | <a href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#register-the-microsoft-package-repository" target="_blank"><img alt="DotNet SDK" height="60px" src="../img/dotnet.png"></a> | dotnet.sh | installs DotNet SDK |
+| <a href="https://www.microsoft.com/en-us/edge/download?form=MA13FJ" target="_blank"><img alt="Edge" height="60px" src="../img/edge.svg"></a> | edge.sh | installs Edge |
 || duf.sh | installs [duf](https://github.com/muesli/duf) - disk usage tool |
 | <a href="https://cli.github.com/" target="_blank"><img alt="GitHub CLI" height="60px" src="../img/github.svg"></a> | gh.sh | installs GitHub CLI |
 | <a href="https://go.dev/dl/" target="_blank"><img alt="Golang" height="60px" src="../img/golang.svg"></a> | go.sh | installs Golang |
@@ -19,3 +22,5 @@ This directory contains install scripts for various development tools.
 || packages.sh | installs several command line tools using `apt` |
 | <a href="https://developer.hashicorp.com/terraform/downloads" target="_blank"><img alt="Terraform CLI" height="60px" src="../img/terraform.svg"></a> | terraform.sh | installs Terraform CLI |
 | <a href="https://github.com/nschloe/tiptop" target="_blank"><img alt="tiptop" height="60px" src="../img/tiptop.svg"></a> | tiptop.sh | installs tiptop - command line system monitoring |
+| <a href="https://www.videolan.org/vlc/download-ubuntu.html" target="_blank"><img alt="VLC" height="60px" src="../img/vlc.png"></a> | vlc.sh | installs VLC |
+| <a href="https://code.visualstudio.com/docs/setup/linux" target="_blank"><img alt="VS Code" height="60px" src="../img/vscode.svg"></a> | vscode.sh | installs VS Code |
