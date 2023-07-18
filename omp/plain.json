@@ -1,0 +1,192 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "console_title_template": "{{ .Shell }} in {{ .Folder }}",
+    "final_space": true,
+    "version": 2,
+    "palette": {
+      "pale-cyan": "#8ED1F7",
+      "royal-azure": "#1866E1",
+      "ultramarine": "#2142AB",
+      "pistachio": "#93C572",
+      "emerald": "#50C878",
+      "jade": "#00A86B",
+      "cream": "#FFFDD0",
+      "gold": "#FFD700",
+      "lucky-orange": "#FF9B49",
+      "pumpkin": "#FF7518",
+      "arabian-red": "#A30B2E",
+      "eminence": "#6C3082",
+      "pastel-grey": "#CCCCC4",
+      "antique-steel": "#B1B6B7",
+      "neutral-grey": "#828382"
+    },
+    "blocks": [
+      {
+        "type": "prompt",
+        "alignment": "left",
+        "segments": [
+          {
+            "type": "text",
+            "template": "\u256d\u2500",
+            "foreground": "p:royal-azure",
+            "style": "plain"
+          },
+          {
+            "type": "os",
+            "template": " {{ .Icon }} ",
+            "foreground": "p:pumpkin",
+            "style": "plain"
+          },
+          {
+            "type": "session",
+            "template": " <b>{{ .UserName }}@{{ .HostName }}</b> ",
+            "foreground": "p:pastel-grey",
+            "style": "plain"
+          },
+          {
+            "type": "path",
+            "template": " \uea83  {{ .Path }} ",
+            "foreground": "p:cream",
+            "style": "plain",
+            "properties": {
+              "folder_separator_icon": " \ue0b1 ",
+              "home_icon": "~",
+              "style": "folder"
+            }
+          },
+          {
+            "type": "git",
+            "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+            "foreground": "p:pastel-grey",
+            "foreground_templates": [
+              "{{ if or (.Working.Changed) (.Staging.Changed) }}p:arabian-red{{ end }}",
+              "{{ if and (gt .Ahead 0) (gt .Behind 0)}}p:emerald{{ end }}",
+              "{{ if gt .Ahead 0 }}p:emerald{{ end }}",
+              "{{ if gt .Behind 0 }}p:emerald{{ end }}"
+            ],
+            "style": "plain",
+            "properties": {
+              "branch_max_length": 25,
+              "fetch_stash_count": true,
+              "fetch_status": true,
+              "fetch_upstream_icon": true
+            }
+          },
+          {
+            "type": "aws",
+            "template": " \ue7ad {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} ",
+            "foreground": "p:lucky-orange",
+            "style": "plain",
+            "properties": {
+              "display_default": false
+            }
+          },
+          {
+            "type": "dotnet",
+            "template": " \ue77f {{ .Full }} ",
+            "foreground": "p:royal-azure",
+            "style": "plain"
+          },
+          {
+            "type": "go",
+            "template": " \ue626 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
+            "foreground": "p:pale-cyan",
+            "style": "plain",
+            "properties": {
+              "fetch_version": true
+            }
+          },
+          {
+            "type": "kubectl",
+            "template": " \uf308 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}} ",
+            "foreground": "p:ultramarine",
+            "style": "plain"
+          },
+          {
+            "type": "node",
+            "template": " \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
+            "foreground": "p:jade",
+            "style": "plain",
+            "properties": {
+              "fetch_version": true
+            }
+          },
+          {
+            "type": "python",
+            "template": " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }} ",
+            "foreground": "p:gold",
+            "style": "plain",
+            "properties": {
+              "display_mode": "files",
+              "fetch_virtual_env": false
+            }
+          },
+          {
+            "type": "terraform",
+            "template": "{{ .WorkspaceName }}{{ if .Version }} {{ .Version }}{{ end }}",
+            "foreground": "p:eminence",
+            "style": "plain",
+            "properties": {
+              "fetch_version": true
+            }
+          }
+        ]
+      },
+      {
+        "type": "prompt",
+        "alignment": "right",
+        "segments": [
+          {
+            "type": "exit",
+            "template": " {{ if gt .Code 0 }}\uf00d{{ else }}\uf00c{{ end }} ",
+            "foreground_templates": [
+              "{{ if gt .Code 0 }}p:arabian-red{{ end }}"
+            ],
+            "foreground": "p:pistachio",
+            "style": "plain",
+            "properties": {
+              "always_enabled": true
+            }
+          },
+          {
+            "type": "executiontime",
+            "template": " \ueba2 {{ .FormattedMs }}\u2800",
+            "foreground": "p:antique-steel",
+            "style": "plain",
+            "properties": {
+              "always_enabled": true
+            }
+          },
+          {
+            "type": "time",
+            "template": " {{ .CurrentDate | date .Format }}",
+            "foreground": "p:neutral-grey",
+            "style": "plain",
+            "properties": {
+              "time_format": "15:04:05"
+            }
+          }
+        ]
+      },
+      {
+        "type": "prompt",
+        "alignment": "left",
+        "newline": true,
+        "segments": [
+          {
+            "type": "text",
+            "template": "\u2570\u2500",
+            "foreground": "p:royal-azure",
+            "style": "plain"
+          },
+          {
+            "type": "text",
+            "template": " {{if .Root}}#{{else}}${{end}} ",
+            "foreground": "p:gold",
+            "style": "plain"
+          }
+        ]
+      }
+    ]
+  }
+  
