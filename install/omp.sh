@@ -1,12 +1,10 @@
 #!/bin/bash
 
 install_omp() {
-    sudo curl -L https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -o /usr/local/bin/oh-my-posh
-    sudo chmod +x /usr/local/bin/oh-my-posh    
-    echo '# initialize oh-my-posh' >> ~/.bashrc
-    # initialize and configure theme
-    # TODO eval "$(oh-my-posh init bash --config ~/jandedobbeleer.omp.json)" # file path or use url
-    echo 'eval "$(oh-my-posh init bash)"' >> ~/.bashrc
+    sudo curl -L https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -o /usr/local/bin/oh-my-posh && \
+    sudo chmod +x /usr/local/bin/oh-my-posh && \ 
+    echo '# initialize oh-my-posh' >> ~/.bashrc && \
+    echo 'eval "$(oh-my-posh init bash --config https://raw.githubusercontent.com/frennky/dotfiles/master/omp/plain.json)"' >> ~/.bashrc && \
     source ~/.bashrc
 }
 
