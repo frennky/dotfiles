@@ -1,0 +1,6 @@
+---
+- name: Install
+  hosts: localhost
+  connection: local
+  roles:
+    - ansible-role-aws-cli

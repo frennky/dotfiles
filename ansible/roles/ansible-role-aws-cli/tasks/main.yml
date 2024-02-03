@@ -1,0 +1,78 @@
+---
+
+- name: Install AWS CLI dependencies
+  ansible.builtin.package:
+    name:
+      - unzip
+    state: present
+
+- name: Download AWS CLI and signature file
+  ansible.builtin.get_url:
+    url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.{{ item }}"
+    dest: "{{ dir }}/{{ filename }}.{{ item }}"
+    mode: '400'
+  with_items:
+    - zip
+    - zip.sig
+
+- name: Copy key file
+  ansible.builtin.copy:
+    src: "{{ key_name }}"
+    dest: "{{ key_path }}"
+    mode: '400'
+
+- name: Import GPG key
+  ansible.builtin.shell:
+    cmd: "gpg --import {{ key_path }}"
+  args:
+    executable: /bin/sh
+  register: key_import
+  changed_when: false
+  failed_when: key_import.rc != 0
+
+- name: Verify AWS CLI signature
+  ansible.builtin.shell:
+    cmd: "gpg --verify {{ dir }}/{{ filename }}.zip.sig {{ dir }}/{{ filename }}.zip"
+  args:
+    executable: /bin/sh
+  register: verify
+  changed_when: false
+  failed_when: verify.rc != 0
+
+- name: Unzip AWS CLI installer
+  ansible.builtin.unarchive:
+    src: "{{ dir }}/{{ filename }}.zip"
+    dest: "{{ dir }}"
+    copy: false
+    creates: "{{ dir }}/aws"
+
+- name: Install AWS CLI
+  ansible.builtin.shell:
+    cmd: "{{ dir }}/aws/install -i /usr/local/aws -b /usr/bin/aws"
+  become: true
+  args:
+    executable: /bin/sh
+    creates: /usr/bin/aws
+
+- name: Cleanup downloaded files
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ dir }}/{{ filename }}.zip"
+    - "{{ dir }}/{{ filename }}.zip.sig"
+    - "{{ key_path }}"
+    - "{{ dir }}/aws"
+
+- name: Get AWS CLI version
+  ansible.builtin.shell:
+    cmd: aws --version
+  args:
+    executable: /bin/sh
+  register: version
+  changed_when: false
+  failed_when: verify.rc != 0
+
+- name: Print AWS CLI version
+  ansible.builtin.debug:
+    var: version.stdout
