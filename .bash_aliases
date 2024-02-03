@@ -41,3 +41,7 @@ alias greph="grep --color=always -e^ -e"
 
 # kubectl
 alias k='kubectl'
+
+# terraform
+alias t='terraform'
+
