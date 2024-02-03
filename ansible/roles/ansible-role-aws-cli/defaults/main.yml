@@ -1,0 +1,5 @@
+---
+dir: /tmp
+filename: awscliv2
+key_name: gpg.key
+key_path: "{{ dir }}/{{ key_name }}"
