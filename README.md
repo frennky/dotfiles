@@ -1,26 +1,25 @@
 # dotfiles
 
-This repository contains my dot files, install scripts and settings.
+This repository contains my dot files, install roles and settings. Installation is done with ansible. To install ansible run:
+
+```bash
+pip install --user ansible-core
+```
 
 ```
 .
-├── install
-└── windows-terminal
+├── ansible
+└── omp
 ```
 
-To install all just run install script from repo root:
+To install all just run ansible playbook `install.yml` from ansible dir:
 
 ```bash
-./install.sh
+ansible-playbook install.yml -K
 ```
 
-To install specific tools pass install script name as argument. For example, to install AWS CLI and oh-my-posh run:
+Use tags to install specific tools. For example, to install Docker and Azure CLI run:
 
 ```bash
-./install.sh aws omp
+ansible-playbook install.yml --tags docker azure-cli -K
 ```
-
-For more details on each directory, see these links:
-
-- [install](./install/README.md)
-- [windows-terminal](./windows-terminal/README.md)
