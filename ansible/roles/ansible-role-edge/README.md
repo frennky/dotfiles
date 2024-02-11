@@ -1,7 +1,7 @@
-AWS CLI Install
-===============
+Microsoft Edge Install
+======================
 
-This role installs AWS CLI on local system.
+This role installs Microsoft Edge on local system.
 
 Requirements
 ------------
@@ -13,12 +13,12 @@ Role Variables
 
 This role contains several defaults that can be overridden:
 
-- `aws_cli_platform`: AWS CLI binary target platform
-- `aws_cli_arch`: AWS CLI binary target architecture
-- `aws_cli_download_dir`: download directory
-- `aws_cli_filename`: archive filename
-- `aws_cli_key_name`: GPG key filename
-- `aws_cli_key_path`: full path and filename for GPG key
+- `edge_pgp_url`: Repository PGP key URL
+- `edge_pgp_path`: Local path for repository key
+- `edge_arch`: Target architecture
+- `edge_repo_url`: Repository URL
+- `edge_repo`: Repository name
+- `edge_package`: Package name
 
 Dependencies
 ------------
@@ -35,7 +35,7 @@ Here is an example of how to use this role:
 - name: Install
   hosts: localhost
   roles:
-    - ansible-role-aws-cli
+    - ansible-role-edge
 ```
 
 License

@@ -18,9 +18,6 @@ HISTTIMEFORMAT="[%F %T] "
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# ssh agent
-# eval $(ssh-agent)
-
 # Alias definitions
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
@@ -30,7 +27,3 @@ fi
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
-# add golang to path
-export PATH=$PATH:/usr/local/go/bin
-# initialize oh-my-posh
-eval "$(oh-my-posh init bash --config https://raw.githubusercontent.com/frennky/dotfiles/master/omp/plain.json)"

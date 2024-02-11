@@ -1,0 +1,26 @@
+---
+
+- name: Install Dotnet repository
+  ansible.builtin.apt:
+    deb: "https://packages.microsoft.com/config/{{ dotnet_repo }}/{{ dotnet_repo_version }}/packages-microsoft-prod.deb"
+  become: true
+
+- name: Install Dotnet
+  ansible.builtin.apt:
+    name:
+      - "{{ dotnet_package }}"
+    cache_valid_time: 600
+  become: true
+
+- name: Get Dotnet version
+  ansible.builtin.shell:
+    cmd: dotnet --version
+  args:
+    executable: /bin/sh
+  register: version
+  changed_when: false
+  failed_when: version.rc != 0
+
+- name: Print Dotnet version
+  ansible.builtin.debug:
+    var: version.stdout

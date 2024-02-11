@@ -1,0 +1,4 @@
+---
+k9s_version: "0.31.8"
+k9s_arch: amd64
+k9s_deb_url: "https://github.com/derailed/k9s/releases/download/v{{ k9s_version }}/k9s_linux_{{ k9s_arch }}.deb"

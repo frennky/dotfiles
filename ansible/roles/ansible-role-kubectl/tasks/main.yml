@@ -1,0 +1,43 @@
+---
+
+- name: Install Kubectl dependencies
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+    cache_valid_time: 600
+  become: true
+
+- name: Get Kubectl GPG key
+  ansible.builtin.get_url:
+    url: "{{ kubectl_key_url }}"
+    dest: "{{ kubectl_key_path }}"
+    mode: '644'
+  become: true
+
+- name: Add Kubectl repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by={{ kubectl_key_path }}] {{ kubectl_repo_url }} {{ kubectl_repo }}"
+    filename: hashicorp
+    state: present
+  become: true
+
+- name: Install Kubectl
+  ansible.builtin.apt:
+    name:
+      - "{{ kubectl_package }}"
+    cache_valid_time: 600
+  become: true
+
+- name: Get Kubectl version
+  ansible.builtin.shell:
+    cmd: kubectl version
+  args:
+    executable: /bin/sh
+  register: version
+  changed_when: false
+  failed_when: version.rc != 0
+
+- name: Print Kubectl version
+  ansible.builtin.debug:
+    var: version.stdout

@@ -1,5 +1,7 @@
 ---
-dir: /tmp
-filename: awscliv2
-key_name: gpg.key
-key_path: "{{ dir }}/{{ key_name }}"
+aws_cli_platform: linux
+aws_cli_arch: x86_64
+aws_cli_download_dir: /tmp  # local_tmp
+aws_cli_filename: awscliv2
+aws_cli_key_name: gpg.key
+aws_cli_key_path: "{{ aws_cli_download_dir }}/{{ aws_cli_key_name }}"

@@ -1,7 +1,7 @@
-AWS CLI Install
+Kubectl Install
 ===============
 
-This role installs AWS CLI on local system.
+This role installs Kubectl on local system.
 
 Requirements
 ------------
@@ -13,12 +13,11 @@ Role Variables
 
 This role contains several defaults that can be overridden:
 
-- `aws_cli_platform`: AWS CLI binary target platform
-- `aws_cli_arch`: AWS CLI binary target architecture
-- `aws_cli_download_dir`: download directory
-- `aws_cli_filename`: archive filename
-- `aws_cli_key_name`: GPG key filename
-- `aws_cli_key_path`: full path and filename for GPG key
+- `kubectl_key_url`: Repository PGP key URL
+- `kubectl_key_path`: Local path for repository key
+- `kubectl_repo_url`: Repository URL
+- `kubectl_repo`: Repository name
+- `kubectl_package`: Package name
 
 Dependencies
 ------------
@@ -35,7 +34,7 @@ Here is an example of how to use this role:
 - name: Install
   hosts: localhost
   roles:
-    - ansible-role-aws-cli
+    - ansible-role-kubectl
 ```
 
 License

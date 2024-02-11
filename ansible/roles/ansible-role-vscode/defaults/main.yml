@@ -1,0 +1,3 @@
+---
+vscode_arch: x64
+vscode_deb_url: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-{{ vscode_arch }}

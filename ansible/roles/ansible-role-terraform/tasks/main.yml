@@ -1,0 +1,43 @@
+---
+
+- name: Install Terraform dependencies
+  ansible.builtin.apt:
+    name:
+      - gnupg
+      - software-properties-common
+    cache_valid_time: 600
+  become: true
+
+- name: Get Terraform GPG key
+  ansible.builtin.get_url:
+    url: "{{ terraform_key_url }}"
+    dest: "{{ terraform_key_path }}"
+    mode: '644'
+  become: true
+
+- name: Add Terraform repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by={{ terraform_key_path }}] {{ terraform_repo_url }} {{ terraform_repo }} main"
+    filename: hashicorp
+    state: present
+  become: true
+
+- name: Install Terraform
+  ansible.builtin.apt:
+    name:
+      - "{{ terraform_package }}"
+    cache_valid_time: 600
+  become: true
+
+- name: Get Terraform version
+  ansible.builtin.shell:
+    cmd: terraform version
+  args:
+    executable: /bin/sh
+  register: version
+  changed_when: false
+  failed_when: version.rc != 0
+
+- name: Print Terraform version
+  ansible.builtin.debug:
+    var: version.stdout

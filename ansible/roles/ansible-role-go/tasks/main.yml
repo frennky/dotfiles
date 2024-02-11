@@ -1,0 +1,37 @@
+---
+
+- name: Download Go
+  ansible.builtin.get_url:
+    url: "{{ go_download_url }}"
+    dest: "/usr/local/src/{{ go_tarball }}"
+    checksum: "sha256:{{ go_checksum }}"
+    mode: '600'
+  become: true
+
+- name: Extract Go tarball
+  ansible.builtin.unarchive:
+    src: "/usr/local/src/{{ go_tarball }}"
+    dest: /usr/local
+    copy: false
+  become: true
+
+- name: Add Go to system $PATH
+  ansible.builtin.copy:
+    dest: /etc/profile.d/go.sh
+    content: |-
+      export PATH=$PATH:/usr/local/go/bin
+    mode: '644'
+  become: true
+
+- name: Get Go version
+  ansible.builtin.shell:
+    cmd: go version
+  args:
+    executable: /bin/sh
+  register: version
+  changed_when: false
+  failed_when: version.rc != 0
+
+- name: Print Go version
+  ansible.builtin.debug:
+    var: version.stdout
