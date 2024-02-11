@@ -1,0 +1,19 @@
+galaxy_info:
+  role_name: bash_configure
+  author: frennky
+  description: This role configures bash and some commonly used packages on local system.
+
+  license: MIT
+
+  min_ansible_version: 2.14.2
+
+  platforms:
+    - name: Debian
+      versions:
+        - bookworm
+
+  galaxy_tags:
+    - bash
+    - configure
+
+dependencies: []

@@ -1,0 +1,42 @@
+---
+
+- name: Install Helm dependencies
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+    cache_valid_time: 600
+  become: true
+
+- name: Get Helm GPG key
+  ansible.builtin.get_url:
+    url: "{{ helm_key_url }}"
+    dest: "{{ helm_key_path }}"
+    mode: '644'
+  become: true
+
+- name: Add Helm repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ helm_arch }} signed-by={{ helm_key_path }}] {{ helm_repo_url }} {{ helm_repo }} main"
+    filename: helm
+    state: present
+  become: true
+
+- name: Install Helm
+  ansible.builtin.apt:
+    name:
+      - "{{ helm_package }}"
+    cache_valid_time: 600
+  become: true
+
+- name: Get Helm version
+  ansible.builtin.shell:
+    cmd: helm version
+  args:
+    executable: /bin/sh
+  register: version
+  changed_when: false
+  failed_when: version.rc != 0
+
+- name: Print Helm version
+  ansible.builtin.debug:
+    var: version.stdout

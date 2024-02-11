@@ -1,0 +1,19 @@
+galaxy_info:
+  role_name: kubectl_install
+  author: frennky
+  description: This role installs Kubectl on local system.
+
+  license: MIT
+
+  min_ansible_version: 2.14.2
+
+  platforms:
+    - name: Debian
+      versions:
+        - bookworm
+
+  galaxy_tags:
+    - kubectl
+    - install
+
+dependencies: []

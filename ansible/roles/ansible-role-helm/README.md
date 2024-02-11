@@ -1,7 +1,7 @@
-AWS CLI Install
-===============
+Helm Install
+============
 
-This role installs AWS CLI on local system.
+This role installs Helm on local system.
 
 Requirements
 ------------
@@ -13,12 +13,12 @@ Role Variables
 
 This role contains several defaults that can be overridden:
 
-- `aws_cli_platform`: AWS CLI binary target platform
-- `aws_cli_arch`: AWS CLI binary target architecture
-- `aws_cli_download_dir`: download directory
-- `aws_cli_filename`: archive filename
-- `aws_cli_key_name`: GPG key filename
-- `aws_cli_key_path`: full path and filename for GPG key
+- `helm_key_url`: Repository PGP key URL
+- `helm_key_path`: Local path for repository key
+- `helm_arch`: Target architecture
+- `helm_repo_url`: Repository URL
+- `helm_repo`: Repository name
+- `helm_package`: Package name
 
 Dependencies
 ------------
@@ -35,7 +35,7 @@ Here is an example of how to use this role:
 - name: Install
   hosts: localhost
   roles:
-    - ansible-role-aws-cli
+    - ansible-role-helm
 ```
 
 License

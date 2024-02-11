@@ -1,15 +1,17 @@
 ---
 
 - name: Install AWS CLI dependencies
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name:
       - unzip
     state: present
+    cache_valid_time: 600
+  become: true
 
 - name: Download AWS CLI and signature file
   ansible.builtin.get_url:
     url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.{{ item }}"
-    dest: "{{ dir }}/{{ filename }}.{{ item }}"
+    dest: "{{ aws_cli_download_dir }}/{{ aws_cli_filename }}.{{ item }}"
     mode: '400'
   with_items:
     - zip
@@ -17,13 +19,13 @@
 
 - name: Copy key file
   ansible.builtin.copy:
-    src: "{{ key_name }}"
-    dest: "{{ key_path }}"
+    src: "{{ aws_cli_key_name }}"
+    dest: "{{ aws_cli_key_path }}"
     mode: '400'
 
 - name: Import GPG key
   ansible.builtin.shell:
-    cmd: "gpg --import {{ key_path }}"
+    cmd: "gpg --import {{ aws_cli_key_path }}"
   args:
     executable: /bin/sh
   register: key_import
@@ -32,7 +34,7 @@
 
 - name: Verify AWS CLI signature
   ansible.builtin.shell:
-    cmd: "gpg --verify {{ dir }}/{{ filename }}.zip.sig {{ dir }}/{{ filename }}.zip"
+    cmd: "gpg --verify {{ aws_cli_download_dir }}/{{ aws_cli_filename }}.zip.sig {{ aws_cli_download_dir }}/{{ aws_cli_filename }}.zip"
   args:
     executable: /bin/sh
   register: verify
@@ -41,14 +43,14 @@
 
 - name: Unzip AWS CLI installer
   ansible.builtin.unarchive:
-    src: "{{ dir }}/{{ filename }}.zip"
-    dest: "{{ dir }}"
+    src: "{{ aws_cli_download_dir }}/{{ aws_cli_filename }}.zip"
+    dest: "{{ aws_cli_download_dir }}"
     copy: false
-    creates: "{{ dir }}/aws"
+    creates: "{{ aws_cli_download_dir }}/aws"
 
 - name: Install AWS CLI
   ansible.builtin.shell:
-    cmd: "{{ dir }}/aws/install -i /usr/local/aws -b /usr/bin/aws"
+    cmd: "{{ aws_cli_download_dir }}/aws/install -i /usr/local/aws -b /usr/bin/aws"
   become: true
   args:
     executable: /bin/sh
@@ -59,10 +61,10 @@
     path: "{{ item }}"
     state: absent
   with_items:
-    - "{{ dir }}/{{ filename }}.zip"
-    - "{{ dir }}/{{ filename }}.zip.sig"
-    - "{{ key_path }}"
-    - "{{ dir }}/aws"
+    - "{{ aws_cli_download_dir }}/{{ aws_cli_filename }}.zip"
+    - "{{ aws_cli_download_dir }}/{{ aws_cli_filename }}.zip.sig"
+    - "{{ aws_cli_key_path }}"
+    - "{{ aws_cli_download_dir }}/aws"
 
 - name: Get AWS CLI version
   ansible.builtin.shell:
@@ -71,7 +73,7 @@
     executable: /bin/sh
   register: version
   changed_when: false
-  failed_when: verify.rc != 0
+  failed_when: version.rc != 0
 
 - name: Print AWS CLI version
   ansible.builtin.debug:

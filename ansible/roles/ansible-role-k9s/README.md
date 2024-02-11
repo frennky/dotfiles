@@ -1,7 +1,7 @@
-AWS CLI Install
-===============
+K9s Install
+===========
 
-This role installs AWS CLI on local system.
+This role installs K9s on local system.
 
 Requirements
 ------------
@@ -13,12 +13,9 @@ Role Variables
 
 This role contains several defaults that can be overridden:
 
-- `aws_cli_platform`: AWS CLI binary target platform
-- `aws_cli_arch`: AWS CLI binary target architecture
-- `aws_cli_download_dir`: download directory
-- `aws_cli_filename`: archive filename
-- `aws_cli_key_name`: GPG key filename
-- `aws_cli_key_path`: full path and filename for GPG key
+- `k9s_version`: Package version
+- `k9s_arch`: Target architecture
+- `k9s_deb_url`: Package URL
 
 Dependencies
 ------------
@@ -35,7 +32,7 @@ Here is an example of how to use this role:
 - name: Install
   hosts: localhost
   roles:
-    - ansible-role-aws-cli
+    - ansible-role-k9s
 ```
 
 License

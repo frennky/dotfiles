@@ -1,0 +1,59 @@
+---
+
+- name: Copy .bash files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "~/{{ item }}"
+    mode: '644'
+    backup: true
+  with_items:
+    - .bashrc
+    - .bash_aliases
+    - .bash_functions
+
+- name: Install packages
+  ansible.builtin.apt:
+    name:
+      - curl
+      - bat
+      - htop
+      - jq
+      - ncdu
+      - net-tools
+      - tmux
+      - tree
+      - vim
+      - nfs-common
+      - cifs-utils
+    cache_valid_time: 600
+  become: true
+
+- name: Create symbolic link for bat
+  ansible.builtin.file:
+    src: /usr/bin/batcat
+    dest: /usr/local/bin/bat
+    state: link
+    mode: '755'
+  become: true
+
+- name: Install oh-my-posh
+  ansible.builtin.get_url:
+    url: https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64
+    dest: /usr/local/bin/oh-my-posh
+    checksum: sha256:https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64.sha256
+    mode: '755'
+  become: true
+
+- name: Install Nerd Font for oh-my-posh
+  ansible.builtin.shell:
+    cmd: oh-my-posh font install Cousine
+  args:
+    executable: /bin/sh
+  register: install_font
+  changed_when: false
+  failed_when: install_font.rc != 0
+
+- name: Add oh-my-posh init in .bashrc
+  ansible.builtin.lineinfile:
+    path: "~/.bashrc"
+    line: 'eval "$(oh-my-posh init bash --config https://raw.githubusercontent.com/frennky/dotfiles/master/omp/plain.json)"'

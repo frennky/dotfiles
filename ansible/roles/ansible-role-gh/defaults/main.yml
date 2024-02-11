@@ -1,0 +1,7 @@
+---
+gh_pgp_url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+gh_pgp_path: /etc/apt/keyrings/githubcli-archive-keyring.gpg
+gh_arch: amd64
+gh_repo_url: https://cli.github.com/packages
+gh_repo: stable
+gh_package: gh

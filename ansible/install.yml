@@ -1,6 +1,22 @@
 ---
+
 - name: Install
   hosts: localhost
   connection: local
   roles:
-    - ansible-role-aws-cli
+    - { role: ansible-role-bash, tags: bash }
+    - { role: ansible-role-aws-cli, tags: aws-cli }
+    - { role: ansible-role-azure-cli, tags: azure-cli }
+    - { role: ansible-role-discord, tags: discord }
+    - { role: ansible-role-docker, tags: docker }
+    - { role: ansible-role-dotnet, tags: dotnet }
+    - { role: ansible-role-edge, tags: edge }
+    - { role: ansible-role-gh, tags: gh }
+    - { role: ansible-role-go, tags: go }
+    - { role: ansible-role-helm, tags: helm }
+    - { role: ansible-role-k9s, tags: k9s }
+    - { role: ansible-role-kubectl, tags: kubectl }
+    - { role: ansible-role-rpi-imager, tags: rpi-imager }
+    - { role: ansible-role-terraform, tags: terraform }
+    - { role: ansible-role-vlc, tags: vlc }
+    - { role: ansible-role-vscode, tags: vscode }

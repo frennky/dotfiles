@@ -1,0 +1,19 @@
+---
+
+- name: Install VS Code from deb package
+  ansible.builtin.apt:
+    deb: "{{ vscode_deb_url }}"
+  become: true
+
+- name: Get VS Code version
+  ansible.builtin.shell:
+    cmd: code --version
+  args:
+    executable: /bin/sh
+  register: version
+  changed_when: false
+  failed_when: version.rc != 0
+
+- name: Print VS Code version
+  ansible.builtin.debug:
+    var: version.stdout

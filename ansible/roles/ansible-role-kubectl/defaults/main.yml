@@ -1,0 +1,6 @@
+---
+kubectl_key_url: https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key
+kubectl_key_path: /etc/apt/keyrings/kubernetes.asc
+kubectl_repo_url: https://pkgs.k8s.io/core:/stable:/v1.29/deb/
+kubectl_repo: /
+kubectl_package: kubectl

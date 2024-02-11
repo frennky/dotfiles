@@ -1,0 +1,46 @@
+---
+
+- name: Install Azure CLI dependencies
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - curl
+      - apt-transport-https
+      - lsb-release
+      - gnupg
+    cache_valid_time: 600
+  become: true
+
+- name: Get Azure CLI GPG key
+  ansible.builtin.get_url:
+    url: "{{ az_cli_key_url }}"
+    dest: "{{ az_cli_key_path }}"
+    mode: '644'
+  become: true
+
+- name: Add Azure CLI repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ az_cli_arch }} signed-by={{ az_cli_key_path }}] {{ az_cli_repo_url }} {{ az_cli_repo }} main"
+    filename: azure-cli
+    state: present
+  become: true
+
+- name: Install Azure CLI
+  ansible.builtin.apt:
+    name:
+      - "{{ az_cli_package }}"
+    cache_valid_time: 600
+  become: true
+
+- name: Get Azure CLI version
+  ansible.builtin.shell:
+    cmd: az version
+  args:
+    executable: /bin/sh
+  register: version
+  changed_when: false
+  failed_when: version.rc != 0
+
+- name: Print Azure CLI version
+  ansible.builtin.debug:
+    var: version.stdout

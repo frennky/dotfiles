@@ -1,0 +1,21 @@
+---
+
+- name: Install VLC
+  ansible.builtin.apt:
+    name:
+      - vlc
+    cache_valid_time: 600
+  become: true
+
+- name: Get VLC version
+  ansible.builtin.shell:
+    cmd: vlc --version
+  args:
+    executable: /bin/sh
+  register: version
+  changed_when: false
+  failed_when: version.rc != 0
+
+- name: Print VLC version
+  ansible.builtin.debug:
+    var: version.stdout

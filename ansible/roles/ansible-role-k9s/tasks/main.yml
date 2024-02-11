@@ -1,0 +1,19 @@
+---
+
+- name: Install K9s from deb package
+  ansible.builtin.apt:
+    deb: "{{ k9s_deb_url }}"
+  become: true
+
+- name: Get K9s version
+  ansible.builtin.shell:
+    cmd: k9s version
+  args:
+    executable: /bin/sh
+  register: version
+  changed_when: false
+  failed_when: version.rc != 0
+
+- name: Print K9s version
+  ansible.builtin.debug:
+    var: version.stdout

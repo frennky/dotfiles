@@ -1,0 +1,35 @@
+---
+
+- name: Get Github GPG key
+  ansible.builtin.get_url:
+    url: "{{ gh_pgp_url }}"
+    dest: "{{ gh_pgp_path }}"
+    mode: '644'
+  become: true
+
+- name: Add Github repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ gh_arch }} signed-by={{ gh_pgp_path }}] {{ gh_repo_url }} {{ gh_repo }} main"
+    filename: github
+    state: present
+  become: true
+
+- name: Install Github CLI
+  ansible.builtin.apt:
+    name:
+      - "{{ gh_package }}"
+    cache_valid_time: 600
+  become: true
+
+- name: Get Github CLI version
+  ansible.builtin.shell:
+    cmd: gh version
+  args:
+    executable: /bin/sh
+  register: version
+  changed_when: false
+  failed_when: version.rc != 0
+
+- name: Print Github CLI version
+  ansible.builtin.debug:
+    var: version.stdout

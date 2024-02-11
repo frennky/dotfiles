@@ -1,7 +1,7 @@
-AWS CLI Install
-===============
+Go install
+==========
 
-This role installs AWS CLI on local system.
+This role installs Go on local system.
 
 Requirements
 ------------
@@ -13,12 +13,12 @@ Role Variables
 
 This role contains several defaults that can be overridden:
 
-- `aws_cli_platform`: AWS CLI binary target platform
-- `aws_cli_arch`: AWS CLI binary target architecture
-- `aws_cli_download_dir`: download directory
-- `aws_cli_filename`: archive filename
-- `aws_cli_key_name`: GPG key filename
-- `aws_cli_key_path`: full path and filename for GPG key
+- `go_version`: Go binary version
+- `go_platform`: Go binary target platform
+- `go_arch`: Go binary target architecture
+- `go_tarball`: tarball name pattern
+- `go_download_url`: full url for download
+- `go_checksum`: checksum for Go binary
 
 Dependencies
 ------------
@@ -35,7 +35,7 @@ Here is an example of how to use this role:
 - name: Install
   hosts: localhost
   roles:
-    - ansible-role-aws-cli
+    - ansible-role-go
 ```
 
 License
