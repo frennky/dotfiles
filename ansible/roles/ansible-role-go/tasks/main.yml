@@ -25,7 +25,7 @@
 
 - name: Get Go version
   ansible.builtin.shell:
-    cmd: go version
+    cmd: /usr/local/go/bin/go version
   args:
     executable: /bin/sh
   register: version
