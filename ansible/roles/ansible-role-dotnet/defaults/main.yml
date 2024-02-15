@@ -1,4 +1,4 @@
 ---
-dotnet_repo: "{{ ansible_facts.lsb.codename }}"
+dotnet_repo: "{{ ansible_facts.lsb.id | lower }}"
 dotnet_repo_version: "{{ ansible_facts.lsb.release }}"
 dotnet_package: dotnet-sdk-8.0
