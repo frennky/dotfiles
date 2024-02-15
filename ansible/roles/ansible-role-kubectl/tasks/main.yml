@@ -31,7 +31,7 @@
 
 - name: Get Kubectl version
   ansible.builtin.shell:
-    cmd: kubectl version
+    cmd: kubectl version --client=true
   args:
     executable: /bin/sh
   register: version
