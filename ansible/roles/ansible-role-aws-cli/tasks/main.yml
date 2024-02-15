@@ -54,6 +54,7 @@
   become: true
   args:
     executable: /bin/sh
+    creates: /usr/local/bin/aws
 
 - name: Cleanup downloaded files
   ansible.builtin.file:
