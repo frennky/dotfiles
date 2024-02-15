@@ -46,6 +46,19 @@
     cache_valid_time: 600
   become: true
 
+- name: Ensure docker group exists
+  ansible.builtin.group:
+    name: docker
+    state: present
+  become: true
+
+- name: Ensure user is in docker group
+  ansible.builtin.user:
+    name: "{{ lookup('env', 'USER') }}"
+    groups: docker
+    append: true
+  become: true
+
 - name: Get Docker version
   ansible.builtin.shell:
     cmd: docker --version
