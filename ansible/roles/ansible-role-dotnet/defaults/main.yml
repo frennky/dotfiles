@@ -1,4 +1,4 @@
 ---
-dotnet_repo: ubuntu
-dotnet_repo_version: "23.04"
+dotnet_repo: "{{ ansible_facts.lsb.codename }}"
+dotnet_repo_version: "{{ ansible_facts.lsb.release }}"
 dotnet_package: dotnet-sdk-8.0
