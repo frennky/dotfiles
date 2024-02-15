@@ -50,7 +50,7 @@
 
 - name: Install AWS CLI
   ansible.builtin.shell:
-    cmd: "{{ aws_cli_download_dir }}/aws/install -i /usr/local/aws -b /usr/bin/aws"
+    cmd: "{{ aws_cli_download_dir }}/aws/install"
   become: true
   args:
     executable: /bin/sh
