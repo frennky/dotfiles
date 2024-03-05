@@ -114,7 +114,7 @@
           },
           {
             "type": "kubectl",
-            "template": " \uf308 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}} ",
+            "template": " \udb84\udcfe {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}} ",
             "background": "p:ultramarine",
             "foreground": "black",
             "style": "diamond",
