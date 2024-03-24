@@ -1,5 +1,11 @@
 ---
 
+- name: Remove existing installation
+  ansible.builtin.file:
+    path: /usr/local/go
+    state: absent
+  become: true
+
 - name: Download Go
   ansible.builtin.get_url:
     url: "{{ go_download_url }}"
