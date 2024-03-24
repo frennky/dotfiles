@@ -29,6 +29,10 @@
       ansible.builtin.debug:
         var: ansible_facts.lsb.release
 
+    - name: Print lsb codename
+      ansible.builtin.debug:
+        var: ansible_facts.lsb.codename
+
     - name: Print architecture
       ansible.builtin.debug:
         var: ansible_facts.architecture
