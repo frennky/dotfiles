@@ -1,7 +1,7 @@
 galaxy_info:
-  role_name: kubectl_install
+  role_name: nvim_install
   author: frennky
-  description: This role installs Kubectl on local system.
+  description: This role installs NeoVim on local system.
 
   license: MIT
 
@@ -13,7 +13,7 @@ galaxy_info:
         - noble
 
   galaxy_tags:
-    - kubectl
+    - nvim
     - install
 
 dependencies: []
