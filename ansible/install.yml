@@ -16,6 +16,7 @@
     - { role: ansible-role-helm, tags: helm }
     - { role: ansible-role-k9s, tags: k9s }
     - { role: ansible-role-kubectl, tags: kubectl }
+    - { role: ansible-role-nvim, tags: nvim }
     - { role: ansible-role-rpi-imager, tags: rpi-imager }
     - { role: ansible-role-terraform, tags: terraform }
     - { role: ansible-role-vlc, tags: vlc }
